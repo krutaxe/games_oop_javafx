@@ -24,6 +24,8 @@ import ru.job4j.packman.firuges.Figure;
 import java.util.Random;
 
 public class PackMan extends Application {
+    /**this.add(new Block(new Cell(4, 4)), grid);
+     */
     private static final String JOB4J = "Пазлы на www.job4j.ru";
     private final int size = 5;
     private final Logic logic = new Logic(size);
@@ -82,8 +84,7 @@ public class PackMan extends Application {
         stage.show();
         this.refresh(border);
     }
-    /**this.add(new Block(new Cell(4, 4)), grid);
-     */
+
     private void refresh(final BorderPane border) {
         Group grid = this.buildGrid();
         border.setCenter(grid);
