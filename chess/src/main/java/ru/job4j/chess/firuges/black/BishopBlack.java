@@ -5,12 +5,13 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
 public class BishopBlack implements Figure {
+
     private final Cell position;
 
     public BishopBlack(final Cell ps) {
         position = ps;
-    }
 
+    }
     @Override
     public Cell position() {
         return position;
@@ -18,15 +19,28 @@ public class BishopBlack implements Figure {
 
     @Override
     public Cell[] way(Cell dest) {
-        throw new ImpossibleMoveException(
-                String.format("Could not way by diagonal from %s to %s", position, dest)
-        );
+        if (!isDiagonal(position, dest)) {
+            throw new ImpossibleMoveException(
+                    String.format("Could not move by diagonal from %s to %s", position, dest)
+            );
+        }
+        int size = Math.abs(dest.getY() - position.getY());
+        Cell[] steps = new Cell[size];
+        int x = position.getX();
+        int y = position.getY();
+        int deltaX = dest.getX() > position.getX() ? 1 : -1;
+        int deltaY = dest.getY() > position.getY() ? 1 : -1;
+        for (int index = 0; index < size; index++) {
+            x += deltaX;
+            y += deltaY;
+            steps[index] = Cell.findBy(x, y);
+        }
+        return steps;
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        return false;
+        return Math.abs(source.getX() - dest.getX()) == Math.abs(source.getY() - dest.getY());
     }
-
     @Override
     public Figure copy(Cell dest) {
         return new BishopBlack(dest);

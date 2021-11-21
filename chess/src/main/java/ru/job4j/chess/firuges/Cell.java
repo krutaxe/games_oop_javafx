@@ -11,6 +11,7 @@ public enum Cell {
     H1(7, 7), H2(7, 6), H3(7, 5), H4(7, 4), H5(7, 3), H6(7, 2), H7(7, 1), H8(7, 0);
 
     private final int x;
+
     private final int y;
 
     Cell(int cx, int cy) {
