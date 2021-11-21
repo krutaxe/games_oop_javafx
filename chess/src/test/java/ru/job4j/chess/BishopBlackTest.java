@@ -39,11 +39,4 @@ public class BishopBlackTest {
         Cell[] expected = new Cell[] {Cell.B4, Cell.C5, Cell.D6, Cell.E7, Cell.F8};
         assertThat(cell, is(expected));
     }
-
-
-
-
-
-
-
 }
